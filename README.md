@@ -1,1 +1,3 @@
-# labeddit-frontend
+# Frontend Project - Labeddit
+
+🚧  Under Construction 🚧 
