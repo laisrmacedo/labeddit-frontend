@@ -22,8 +22,9 @@ const Container = styled.div`
   .closeBtn{
     display: flex;
     align-items: center;
-    width:35px;
-    display:flex;
+    justify-content: start;
+    width: 70px;
+    /* border: 1px red solid; */
 
     div{
       position: absolute;
@@ -46,24 +47,38 @@ const Container = styled.div`
 
   .textBtn{
     /* border: 1px red solid; */
+    width: 70px;
     display: flex;
+    justify-content: end;
     align-items: center;
-    color: #4088CB;
+    p{
+      color: #4088CB;
+      font-size: 18px; 
+    }
   }
   `
 
-export const Headers = () => { 
+export const Headers = (props) => {
 
-  return(
+  return (
     <Container>
       <div>
         <span className="closeBtn">
-          <div className="rotate45"></div>
-          <div className="rotate270"></div>
+          {props.isCommentsPage &&
+            <>
+              <div className="rotate45"></div>
+              <div className="rotate270"></div>
+            </>
+          }
         </span>
-        <img src={logoHeader}/>
+        <img src={logoHeader} />
         <span className="textBtn">
-          Logout
+        {props.isCommentsPage || props.isPostsPage &&
+          <p>Logout</p>
+        }
+        {props.isSignupPage &&
+          <p>Entrar</p>
+        }
         </span>
       </div>
     </Container>
