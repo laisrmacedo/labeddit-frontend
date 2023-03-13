@@ -8,6 +8,7 @@ export const Router = () => {
       <Routes>
         <Route path={`/users/login`} element={<LoginPage/>}/>
         <Route path={`/users/signup`} element={<SignupPage/>}/>
+        <Route path={`/posts`} element={<SignupPage/>}/>
       </Routes>
     </BrowserRouter>
   )
