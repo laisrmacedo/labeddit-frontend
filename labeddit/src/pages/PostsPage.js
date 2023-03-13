@@ -4,7 +4,9 @@ import { Headers } from "../components/Header"
 export const PostsPage = () => {
   return (
     <>
-    <Headers/>
+    <Headers
+      isPostsPage={true}
+    />
     <Footer/>
     </>
   )
