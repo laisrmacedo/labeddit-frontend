@@ -1,33 +1,20 @@
 import { Footer } from "../components/Footer"
 import { Headers } from "../components/Header"
 import styled from "styled-components";
+import { Container, InputForShortText, Radius25Btn } from "../components/styledcomponents";
 
-const Container = styled.div`
-  height:calc(94% - 50px - 44px);
-  width: 364px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  /* border: 2px solid blue; */
-
+const ContainerSignupPage = styled.div`
   >p{
     color: black;
     font-size: 33px;
   }
+
   .inputs{
     display: flex;
     flex-direction: column;
     gap: 8px;
     width:100%;
     margin: 107px 0 56px 0;
-    color: #45525B;
-    input{
-      padding: 20px 16px;
-      height: 60px;
-      border: 1px solid #D5D8DE;
-      border-radius: 4px;
-    }
   }
 
   .terms{
@@ -35,17 +22,18 @@ const Container = styled.div`
     display: flex;
     flex-direction: column;
     gap:17px;
+
     p{
       font-size: 14px;
-    color: black;
-      
+      color: black;
     }
+
     input{
       width: 18px;
       height: 18px;
     }
+
     span{
-      /* border: 1px solid red; */
       display:flex;
       align-items: center;
       justify-content: space-between;
@@ -53,11 +41,7 @@ const Container = styled.div`
     }
   }
 
-  button{
-    width:100%;
-    height: 51px;
-    border-radius: 25px;
-    border: none;
+  .signup{
     background: linear-gradient(90deg, #FF6489, #F9B24E);
   }
 `
@@ -69,20 +53,22 @@ export const SignupPage = () => {
         isSignupPage={true}
       />
       <Container>
-        <p>Olá, boas vindas ao LabEddit ;)</p>
-        <div className="inputs">
-          <input placeholder="Apelidos" />
-          <input placeholder="E-mail" />
-          <input placeholder="Senha" />
-        </div>
-        <div className="terms">
-          <p>Ao continuar, você concorda com o nosso Contrato de usuário e nossa Política de Privacidade</p>
-          <span>
-            <input type='checkbox' />
-            <p>Eu concordo em receber emails sobre coisas legais no Labeddit</p>
-          </span>
-        </div>
-        <button className="login"> Cadastrar </button>
+        <ContainerSignupPage>
+          <p>Olá, boas vindas ao LabEddit ;)</p>
+          <div className="inputs">
+            <InputForShortText placeholder="Apelidos" />
+            <InputForShortText placeholder="E-mail" />
+            <InputForShortText placeholder="Senha" />
+          </div>
+          <div className="terms">
+            <p>Ao continuar, você concorda com o nosso Contrato de usuário e nossa Política de Privacidade</p>
+            <span>
+              <input type='checkbox' />
+              <p>Eu concordo em receber emails sobre coisas legais no Labeddit</p>
+            </span>
+          </div>
+          <Radius25Btn className="signup"> Cadastrar </Radius25Btn>
+        </ContainerSignupPage>
       </Container>
       <Footer />
     </>
