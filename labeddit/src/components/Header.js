@@ -73,7 +73,10 @@ export const Headers = (props) => {
         </span>
         <img src={logoHeader} />
         <span className="textBtn">
-        {props.isCommentsPage || props.isPostsPage &&
+        {props.isCommentsPage &&
+          <p>Logout</p>
+        }
+        {props.isPostsPage &&
           <p>Logout</p>
         }
         {props.isSignupPage &&
