@@ -1,4 +1,4 @@
-import {createGlobalStyle} from 'styled-components';
+import { createGlobalStyle } from 'styled-components';
 import styled from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
@@ -11,17 +11,20 @@ export const GlobalStyle = createGlobalStyle`
     font-family: 'Poppins', sans-serif;
     color: white;
     ::-webkit-scrollbar-track {
-    background: #FFF; 
+      background: #FFF; 
     };
     ::-webkit-scrollbar{
-    width: 8px;
+      width: 8px;
     };
     ::-webkit-scrollbar-thumb {
-    background: #EDEDED; 
-    border-radius: 10px;
+      background: #EDEDED; 
+      border-radius: 4px;
     };
     ::-webkit-scrollbar-thumb:hover {
-    background: gray; 
+      background: #D5D8DE; 
+    }
+    ::-webkit-scrollbar-thumb:active {
+      background: #D5D8DE; 
     }
   }
 `
@@ -32,5 +35,4 @@ export const Body = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* justify-content: center; */
 `
