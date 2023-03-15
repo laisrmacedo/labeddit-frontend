@@ -11,13 +11,13 @@ export const GlobalStyle = createGlobalStyle`
     font-family: 'Poppins', sans-serif;
     color: white;
     ::-webkit-scrollbar-track {
-    background: #101010; 
+    background: #FFF; 
     };
     ::-webkit-scrollbar{
     width: 8px;
     };
     ::-webkit-scrollbar-thumb {
-    background: #505050; 
+    background: #EDEDED; 
     border-radius: 10px;
     };
     ::-webkit-scrollbar-thumb:hover {
