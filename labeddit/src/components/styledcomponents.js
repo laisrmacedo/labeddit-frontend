@@ -19,11 +19,19 @@ export const InputForLongText = styled.input`
   margin-bottom: 12px;
 `
 
+export const InputForShortText = styled.input`
+  height: 60px;
+  border: 1px solid #D5D8DE;
+  padding: 20px 16px;
+  width: 100%;
+  border-radius: 4px;
+`
+
 export const HorizontalLine = styled.div`
   width: 100%;
   height: 1px;
   background: linear-gradient(90deg, #FF6489, #F9B24E);
-  margin: 16px 0 36px 0;
+  margin: 18px 0;
 `
 
 export const Radius8Btn = styled.button`
@@ -33,4 +41,12 @@ export const Radius8Btn = styled.button`
   height: 51px;
   background: linear-gradient(90deg, #FF6489, #F9B24E);
 `
+
+export const Radius25Btn = styled.button`
+  border-radius: 25px;
+  border: none;
+  width:  100%;
+  height: 51px;
+`
+
 
