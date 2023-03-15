@@ -2,6 +2,11 @@ import { Footer } from "../components/Footer"
 import { Headers } from "../components/Header"
 import styled from "styled-components";
 import { Container, InputForShortText, Radius25Btn } from "../components/styledcomponents";
+import axios from "axios";
+import { BASE_URL } from "../App";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { goToPostsPage } from "../router/coordinator";
 
 const ContainerSignupPage = styled.div`
   >p{
@@ -47,6 +52,39 @@ const ContainerSignupPage = styled.div`
 `
 
 export const SignupPage = () => {
+  const navigate = useNavigate()
+  const [form, setForm] = useState({
+    nickname: "",
+    email: "",
+    password: ""
+  })
+
+  const handleClick = (e) => {
+    e.preventDefault()
+    signup()
+  }
+
+  const onChangeForm = (e) => {
+    const { name, value } = e.target
+    setForm({ ...form, [name]: value })
+  }
+
+  const body = {
+    nickname: form.nickname,
+    email: form.email,
+    password: form.password
+  }
+
+  const signup = async () => {
+    try {
+      const response = await axios.post(BASE_URL + `users/signup`, body)
+      localStorage.setItem("token", response.data.token)
+      goToPostsPage(navigate)
+    } catch (error) {
+      console.log(error.response.data)
+    }
+  }
+
   return (
     <>
       <Headers
@@ -55,19 +93,42 @@ export const SignupPage = () => {
       <Container>
         <ContainerSignupPage>
           <p>Olá, boas vindas ao LabEddit ;)</p>
-          <div className="inputs">
-            <InputForShortText placeholder="Apelidos" />
-            <InputForShortText placeholder="E-mail" />
-            <InputForShortText placeholder="Senha" />
-          </div>
-          <div className="terms">
-            <p>Ao continuar, você concorda com o nosso Contrato de usuário e nossa Política de Privacidade</p>
-            <span>
-              <input type='checkbox' />
-              <p>Eu concordo em receber emails sobre coisas legais no Labeddit</p>
-            </span>
-          </div>
-          <Radius25Btn className="signup"> Cadastrar </Radius25Btn>
+          <form onSubmit={handleClick}>
+            <div className="inputs">
+              <InputForShortText
+                placeholder="Apelido"
+                required
+                type="text"
+                name="nickname"
+                value={form.nickname}
+                onChange={onChangeForm}
+              />
+              <InputForShortText 
+                placeholder="E-mail" 
+                required
+                type="text"
+                name="email"
+                value={form.email}
+                onChange={onChangeForm}
+              />
+              <InputForShortText 
+                placeholder="Senha"
+                required
+                type="password"
+                name="password"
+                value={form.password}
+                onChange={onChangeForm}
+              />
+            </div>
+            <div className="terms">
+              <p>Ao continuar, você concorda com o nosso Contrato de usuário e nossa Política de Privacidade</p>
+              <span>
+                <input type='checkbox' />
+                <p>Eu concordo em receber emails sobre coisas legais no Labeddit</p>
+              </span>
+            </div>
+            <Radius25Btn className="signup"> Cadastrar </Radius25Btn>
+          </form>
         </ContainerSignupPage>
       </Container>
       <Footer />
