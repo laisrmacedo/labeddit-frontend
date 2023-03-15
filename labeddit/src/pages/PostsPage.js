@@ -1,6 +1,6 @@
+import styled from "styled-components";
 import { Footer } from "../components/Footer"
 import { Headers } from "../components/Header"
-import styled from "styled-components";
 import { PostComment } from "../components/PostComment";
 
 const Container = styled.div`
@@ -9,6 +9,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 32px 0 0 0;
   /* justify-content: center; */
   /* border: 2px solid blue; */
   input{
@@ -18,13 +19,13 @@ const Container = styled.div`
       border: 1px solid #D5D8DE;
       border-radius: 8px;
       background-color: #EDEDED;
-      margin: 32px 0 12px 0;
+      margin-bottom: 12px;
   }
   >span{
     width: 100%;
     height: 1px;
     background: linear-gradient(90deg, #FF6489, #F9B24E);
-    margin: 18px 0;
+    margin: 16px 0 36px 0;
   }
   button{
     width:100%;
