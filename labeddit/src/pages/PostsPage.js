@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { Footer } from "../components/Footer"
 import { Headers } from "../components/Header"
 import { PostComment } from "../components/PostComment";
+import { HorizontalLine, InputForLongText, Radius8Btn } from "../components/styledcomponents";
 
 const Container = styled.div`
   height:calc(94% - 50px - 44px);
@@ -39,18 +40,18 @@ const Container = styled.div`
 export const PostsPage = () => {
   return (
     <>
-    <Headers
-      isPostsPage={true}
-    />
-    <Container>
-      <input placeholder="Escreva seu post..."/>
-      <button>Postar</button>
-      <span></span>
-      <div>
-        <PostComment/>
-      </div>
-    </Container>
-    <Footer/>
+      <Headers
+        isPostsPage={true}
+      />
+      <Container>
+        <InputForLongText placeholder="Escreva seu post..." />
+        <Radius8Btn>Postar</Radius8Btn>
+        <HorizontalLine />
+        <div>
+          <PostComment />
+        </div>
+      </Container>
+      <Footer />
     </>
   )
 }
