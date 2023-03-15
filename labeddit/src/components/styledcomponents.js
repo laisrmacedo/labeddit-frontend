@@ -54,6 +54,8 @@ export const Radius25Btn = styled.button`
 export const Box = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: start;
+  width: 364px;
   gap: 10px;
 `
 
