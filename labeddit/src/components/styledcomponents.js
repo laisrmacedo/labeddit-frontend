@@ -17,6 +17,7 @@ export const InputForLongText = styled.input`
   border-radius: 8px;
   background-color: #EDEDED;
   margin-bottom: 12px;
+  color: #000;
 `
 
 export const InputForShortText = styled.input`
@@ -50,4 +51,9 @@ export const Radius25Btn = styled.button`
   height: 51px;
 `
 
+export const Box = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+`
 
