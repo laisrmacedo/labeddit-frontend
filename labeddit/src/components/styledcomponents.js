@@ -25,6 +25,7 @@ export const InputForShortText = styled.input`
   padding: 20px 16px;
   width: 100%;
   border-radius: 4px;
+  color: #000;
 `
 
 export const HorizontalLine = styled.div`
