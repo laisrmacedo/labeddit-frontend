@@ -48,20 +48,20 @@ const Container = styled.div`
     }
   }
 `
-export const PostComment = () => {
+export const PostComment = (props) => {
   return (
     <Container>
-      <p className="user">Enviado por: ----</p>
-      <p className="content">Porque a maioria dos desenvolvedores usam Linux? ou as empresas de tecnologia usam Linux ?</p>
+      <p className="user">Enviado por: {props.post.nickname}</p>
+      <p className="content">{props.post.content}</p>
       <div>
         <span className="votes">
           <img src={upvote} />
-          <p>N</p>
+          <p>{props.post.upvote}</p>
           <img src={downvote} />
         </span>
         <span className="comments">
         <img src={comments} />
-          <p>N</p>
+          <p>{props.post.comments}</p>
         </span>
       </div>
     </Container>
