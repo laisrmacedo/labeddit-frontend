@@ -6,7 +6,7 @@ import { useState } from "react";
 import axios from "axios";
 import { BASE_URL } from "../App";
 import { useNavigate } from "react-router-dom";
-import { goToSignupPage } from "../router/coordinator";
+import { goToPostsPage, goToSignupPage } from "../router/coordinator";
 
 const ContainerLoginPage = styled.div`
   height: 94%;
@@ -75,6 +75,7 @@ export const LoginPage = () => {
     try {
       const response = await axios.post(BASE_URL + `users/login`, body)
       localStorage.setItem("token", response.data.token)
+      goToPostsPage(navigate)
     } catch (error) {
       console.log(error.response.data)
     }
