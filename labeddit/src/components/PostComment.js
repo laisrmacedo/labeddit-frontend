@@ -65,61 +65,25 @@ const Container = styled.div`
 `
 export const PostComment = (props) => {
   const navigate = useNavigate()
-  const [content, setContent] = useState({})
-
-  const headers = {
-    headers: {
-      authorization: localStorage.getItem("token")
-    }
-  }
-
-  const getPostById = async (id) => {
-    try {
-      const response = await axios.get(BASE_URL + `posts/${id}`, headers)
-      setContent(response.data)
-      props.setPostComments(response.data.comments)
-    } catch (error) {
-      console.log(error.response.data)
-    }
-  }
-
-  useEffect(() => {
-    getPostById(props.postId)
-  }, [])
 
   return (
     <Container>
-      {props.isPost ?
-        <>
+
           <div>
-            <p className="user">Enviado por: {content.creatorNickname}</p>
-            <p className="content">{content.content}</p>
+            <p className="user">Enviado por: {props.creatorNickname}</p>
+            <p className="content">{props.content}</p>
           </div>
           <span className="votes">
             <img src={upvote} />
-            <p>{content.upvote}</p>
-            <img src={downvote} />
-          </span>
-        </>
-        :
-        <>
-          <div>
-            <p className="user">Enviado por: {props.commentNickname}</p>
-            <p className="content">{props.commentContent}</p>
-          </div>
-          <span className="votes">
-            <img src={upvote} />
-            <p>{props.commentUpvote}</p>
+            <p>{props.upvote}</p>
             <img src={downvote} />
           </span>
 
-        </>
 
-      }
       {props.isPost &&
-        <span className="comments" onClick={() => goToCommentsPage(navigate, content.id)}>
+        <span className="comments" onClick={() => goToCommentsPage(navigate, props.postId)}>
           <img src={comments} />
-          <p>{content.comments?.length}</p>
+          <p>{props.comments}</p>
         </span>
       }
     </Container>
