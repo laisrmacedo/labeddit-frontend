@@ -2,10 +2,15 @@ import styled from "styled-components";
 import upvote from "../assets/upvote.png"
 import downvote from "../assets/downvote.png"
 import comments from "../assets/comments.png"
+import { goToCommentsPage } from "../router/coordinator";
+import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { BASE_URL } from "../App";
 
 const Container = styled.div`
   min-height: 120px;
-  width: 364px;
+  width: 100%;
   border: 1px solid #E0E0E0;
   background-color: #FBFBFB;
   padding: 9px 10px;
@@ -49,19 +54,40 @@ const Container = styled.div`
   }
 `
 export const PostComment = (props) => {
+  const navigate = useNavigate()
+  const [post, setPost] = useState({})
+
+  const headers = {
+    headers: {
+      authorization: localStorage.getItem("token")
+    }
+  }
+    const getPostById = async () => {
+    try {
+      const response = await axios.get(BASE_URL + `posts/${props.post.id}`, headers)
+      setPost(response.data)
+    } catch (error) {
+      console.log(error.response.data)
+    }
+  }
+
+  useEffect(() => {
+    getPostById()
+  }, [])
+
   return (
     <Container>
-      <p className="user">Enviado por: {props.post.nickname}</p>
-      <p className="content">{props.post.content}</p>
+      <p className="user">Enviado por: {post.creatorNickname}</p>
+      <p className="content">{post.content}</p>
       <div>
         <span className="votes">
           <img src={upvote} />
-          <p>{props.post.upvote}</p>
+          <p>{post.upvote}</p>
           <img src={downvote} />
         </span>
-        <span className="comments">
-        <img src={comments} />
-          <p>{props.post.comments}</p>
+        <span className="comments" onClick={() => goToCommentsPage(navigate, post.id)}>
+          <img src={comments} />
+          <p>{post.comments?.length}</p>
         </span>
       </div>
     </Container>
