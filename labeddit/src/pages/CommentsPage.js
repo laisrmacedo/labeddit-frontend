@@ -51,41 +51,41 @@ export const CommentsPage = () => {
 
   return (
     <>
-       <Headers
+      <Headers
         isCommentsPage={true} />
       <Container>
         <div>
-            <PostComment
-              isPost={true}
-              postId={postById.id}
-              creatorNickname={postById.creatorNickname} 
-              content={postById.content} 
-              upvote={postById.upvote}
-              comments={postById.comments?.length}
-            />
-          <InputForLongText 
-            placeholder="Adicionar comentário" 
+          <PostComment
+            isPost={true}
+            postId={postById.id}
+            creatorNickname={postById.creatorNickname}
+            content={postById.content}
+            upvote={postById.upvote}
+            comments={postById.comments?.length}
+          />
+          <InputForLongText
+            placeholder="Adicionar comentário"
             type="text"
             name="post"
             value={comment}
             onChange={onChangeComment}
           />
+          <Radius8Btn onClick={() => createPost()}>Responder</Radius8Btn>
+          <HorizontalLine />
         </div>
-        <Radius8Btn onClick={() =>  createPost()}>Responder</Radius8Btn>
-        <HorizontalLine />
         <Box>
           {postById.comments?.reverse().map((comment) => {
-            return <PostComment 
+            return <PostComment
               key={comment.id}
-              isPost={false}  
-              creatorNickname={comment.creatorNickname} 
-              content={comment.content} 
+              isPost={false}
+              creatorNickname={comment.creatorNickname}
+              content={comment.content}
               upvote={comment.upvote}
             />
           }).reverse()}
         </Box>
       </Container>
-      <Footer /> 
+      <Footer />
     </>
   )
 }

@@ -52,15 +52,17 @@ export const PostsPage = () => {
         isPostsPage={true}
       />
       <Container>
-        <InputForLongText
-          placeholder="Escreva seu post..."
-          type="text"
-          name="post"
-          value={content}
-          onChange={onChangePost}
-        />
-        <Radius8Btn onClick={() => createPost()}>Postar</Radius8Btn>
-        <HorizontalLine />
+        <div className="fixHeightPostsPage">
+          <InputForLongText
+            placeholder="Escreva seu post..."
+            type="text"
+            name="post"
+            value={content}
+            onChange={onChangePost}
+          />
+          <Radius8Btn onClick={() => createPost()}>Postar</Radius8Btn>
+          <HorizontalLine />
+        </div>
         <Box>
           {allPosts.map((post) => {
             return (
