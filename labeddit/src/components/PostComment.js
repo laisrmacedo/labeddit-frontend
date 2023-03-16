@@ -23,7 +23,7 @@ const Container = styled.div`
 
   div{
     width: 100%;
-    min-height: 56px;
+    min-height: 5px;
     display: flex;
     flex-direction: column;
     gap: 18px;

@@ -1,6 +1,5 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import styled from "styled-components";
 import { BASE_URL } from "../App";
 import { Footer } from "../components/Footer"
 import { Headers } from "../components/Header"
@@ -63,11 +62,11 @@ export const PostsPage = () => {
         <HorizontalLine />
         <Box>
           {allPosts.map((post) => {
-            return <PostComment key={post.id} post={post} />
+            return <PostComment key={post.id} postId={post.id} isPost={true}/>
           })}
         </Box>
       </Container>
-      <Footer />
+      <Footer/>
     </>
   )
 }
