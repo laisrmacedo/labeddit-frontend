@@ -1,5 +1,7 @@
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import logoHeader from '../assets/logoHeader.png'
+import { goToLoginPage, goToPostsPage } from "../router/coordinator";
 
 const Container = styled.div`
   height: 50px;
@@ -59,11 +61,17 @@ const Container = styled.div`
   `
 
 export const Headers = (props) => {
+  const navigate = useNavigate()
+
+  const logout = () => {
+    localStorage.setItem("token", "")
+    goToLoginPage(navigate)
+  }
 
   return (
     <Container>
       <div>
-        <span className="closeBtn">
+        <span onClick={() => goToPostsPage(navigate)} className="closeBtn">
           {props.isCommentsPage &&
             <>
               <div className="rotate45"></div>
@@ -74,13 +82,13 @@ export const Headers = (props) => {
         <img src={logoHeader} />
         <span className="textBtn">
         {props.isCommentsPage &&
-          <p>Logout</p>
+          <p onClick={() => logout()}>Logout</p>
         }
         {props.isPostsPage &&
-          <p>Logout</p>
+          <p onClick={() => logout()}>Logout</p>
         }
         {props.isSignupPage &&
-          <p>Entrar</p>
+          <p onClick={() => goToLoginPage(navigate)}>Entrar</p>
         }
         </span>
       </div>
