@@ -8,10 +8,10 @@ import { Box, Container, HorizontalLine, InputForLongText, Radius8Btn } from "..
 
 export const PostsPage = () => {
   const [allPosts, setAllPosts] = useState([])
-  const [post, setPost] = useState("")
+  const [content, setContent] = useState("")
 
   const onChangePost = (e) => {
-    setPost(e.target.value)
+    setContent(e.target.value)
   }
 
   const headers = {
@@ -21,28 +21,29 @@ export const PostsPage = () => {
   }
 
   const body = {
-    content: post
+    content: content
   }
 
   const createPost = async () => {
     try {
       await axios.post(BASE_URL + `posts`, body, headers)
+      setContent("")
     } catch (error) {
       console.log(error.response.data)
     }
   }
 
-  const getPosts = async () => {
+  const getPosts = async (path, headers) => {
     try {
-      const response = await axios.get(BASE_URL + `posts`, headers)
-      setAllPosts(response.data)
+      const responde = await axios.get(BASE_URL + path, headers)
+      setAllPosts(responde.data)
     } catch (error) {
       console.log(error.response.data)
     }
   }
 
   useEffect(() => {
-    getPosts()
+    getPosts('posts', headers)
   }, [allPosts])
 
   return (
@@ -51,22 +52,32 @@ export const PostsPage = () => {
         isPostsPage={true}
       />
       <Container>
-        <InputForLongText 
+        <InputForLongText
           placeholder="Escreva seu post..."
           type="text"
           name="post"
-          value={post}
+          value={content}
           onChange={onChangePost}
         />
         <Radius8Btn onClick={() => createPost()}>Postar</Radius8Btn>
         <HorizontalLine />
         <Box>
           {allPosts.map((post) => {
-            return <PostComment key={post.id} postId={post.id} isPost={true}/>
-          })}
+            return (
+              <PostComment
+                key={post.id}
+                postId={post.id}
+                creatorNickname={post.creatorNickname}
+                content={post.content}
+                upvote={post.upvote}
+                comments={post.comments.length}
+                isPost={true}
+              />
+            )
+          }).reverse()}
         </Box>
       </Container>
-      <Footer/>
+      <Footer />
     </>
   )
 }
