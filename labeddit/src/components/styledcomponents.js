@@ -7,12 +7,12 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 32px 0 0 0;
-
+  
   >div{
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 10px;
   }
 ` 
 
