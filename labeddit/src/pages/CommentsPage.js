@@ -8,18 +8,32 @@ import { PostComment } from "../components/PostComment"
 import { Box, Container, HorizontalLine, InputForLongText, Radius8Btn } from "../components/styledcomponents";
 
 export const CommentsPage = () => {
-  const { id } = useParams();
-  const [postComments, setPostComments] = useState([])
-  const [comment, setComment] = useState("")
-
-  const onChangeComment = (e) => {
-    setComment(e.target.value)
-  }
+  const { id } = useParams()
+  const [postById, setPostById] = useState({})
 
   const headers = {
     headers: {
       authorization: localStorage.getItem("token")
     }
+  }
+
+  const getPostById = async (path, headers) => {
+    try {
+      const responde = await axios.get(BASE_URL + path, headers)
+      setPostById(responde.data)
+    } catch (error) {
+      console.log(error.response.data)
+    }
+  }
+
+  useEffect(() => {
+    getPostById(`posts/${id}`, headers)
+  }, [postById.comments])
+
+  const [comment, setComment] = useState("")
+
+  const onChangeComment = (e) => {
+    setComment(e.target.value)
   }
 
   const body = {
@@ -29,24 +43,26 @@ export const CommentsPage = () => {
   const createPost = async () => {
     try {
       await axios.post(BASE_URL + `comments/${id}/post`, body, headers)
+      setComment("")
     } catch (error) {
       console.log(error.response.data)
     }
   }
 
-  //falta atualizar a pagina
-
-  useEffect(() => {
-    
-  }, [postComments])
-
   return (
     <>
-      <Headers
+       <Headers
         isCommentsPage={true} />
       <Container>
         <div>
-          <PostComment postId={id} isPost={true} setPostComments={setPostComments}/>
+            <PostComment
+              isPost={true}
+              postId={postById.id}
+              creatorNickname={postById.creatorNickname} 
+              content={postById.content} 
+              upvote={postById.upvote}
+              comments={postById.comments?.length}
+            />
           <InputForLongText 
             placeholder="Adicionar comentário" 
             type="text"
@@ -58,19 +74,18 @@ export const CommentsPage = () => {
         <Radius8Btn onClick={() =>  createPost()}>Responder</Radius8Btn>
         <HorizontalLine />
         <Box>
-          {postComments.map((comment) => {
+          {postById.comments?.reverse().map((comment) => {
             return <PostComment 
               key={comment.id}
               isPost={false}  
-              commentNickname={comment.creatorNickname} 
-              commentContent={comment.content}
-              commentUpvote={comment.upvote}
+              creatorNickname={comment.creatorNickname} 
+              content={comment.content} 
+              upvote={comment.upvote}
             />
-          })}
+          }).reverse()}
         </Box>
       </Container>
-
-      <Footer />
+      <Footer /> 
     </>
   )
 }
