@@ -1,20 +1,13 @@
-import styled from "styled-components";
+import { Body } from "./GlobalStyle";
 import { Router } from "./router/Router";
 
-const Container = styled.div`
-  height: 100vh;
-  width: 100vw;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`
+export const BASE_URL = 'http://localhost:3003/'
 
 function App() {
   return (
-    <Container>
+    <Body>
      <Router></Router>
-    </Container>
+    </Body>
   );
 }
 
