@@ -9,7 +9,7 @@ import axios from "axios";
 import { BASE_URL } from "../App";
 
 const Container = styled.div`
-  min-height: 120px;
+  min-height: ${(props) => (props.length <= 35 ? '120px' : props.length > 200 ? '290px' : props.length + 68 + 'px')};
   width: 100%;
   border: 1px solid #E0E0E0;
   background-color: #FBFBFB;
@@ -67,7 +67,7 @@ export const PostComment = (props) => {
   const navigate = useNavigate()
 
   return (
-    <Container>
+    <Container length={props.content?.length}>
 
           <div>
             <p className="user">Enviado por: {props.creatorNickname}</p>
