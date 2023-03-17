@@ -11,7 +11,7 @@ const Container = styled.div`
   justify-content: center;
   background-color: #EDEDED;
   position: relative;
-  margin-top: 44px;
+  margin: 44px 0 32px 0;
 
   div{
     /* border: 1px red solid; */
