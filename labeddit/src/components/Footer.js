@@ -3,15 +3,15 @@ import linkedin from '../assets/linkedin.png'
 import github from '../assets/github.png'
 
 const Container = styled.div`
-  height: 6%;
+  height: 80px;
   width: 100%;
   display: flex;
   align-items: flex-end;
   justify-content: center;
   bottom: 0px;
+  margin-top: 10px;
   
   div{
-    /* border: 1px red solid; */
     height: 100%;
     width: 364px;
     display: flex;
