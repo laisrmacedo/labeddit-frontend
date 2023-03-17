@@ -1,11 +1,12 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  min-height:calc(94% - 50px - 44px);
+  min-height:calc(94% - 44px - 82px - 90px);
   width: 364px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: ${(props) => (props.gap ? '10px' : 0)};
   position: relative;
   
   .fixHeightPostsPage{
@@ -17,22 +18,19 @@ export const Container = styled.div`
   }
   
   .fixHeightCommentsPage{
-    /* border: 1px solid red; */
     width: 100%;
-    min-height: 192px;
+    min-height: 228px;
     height: 00px;
     display: flex;
     flex-direction: column;
     gap: 10px;
     position: sticky;
-    top: 0;
+    top: -2px;
     background-color: #FFF;
-    margin-top: 10px;
   }
 ` 
 export const Box = styled.div`
-
-  height: calc(100% - 245px);
+  height: calc(100% - 195px);
   display: flex;
   flex-direction: column;
   align-items: start;
@@ -63,7 +61,7 @@ export const HorizontalLine = styled.div`
   width: 100%;
   height: 1px;
   background: linear-gradient(90deg, #FF6489, #F9B24E);
-  margin: 18px 0;
+  margin: ${(props) => (props.margin? '6px 0 16px 0' : '16px 0')};
 `
 
 export const Radius8Btn = styled.button`
