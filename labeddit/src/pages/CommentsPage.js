@@ -5,7 +5,7 @@ import { BASE_URL } from "../App";
 import { Footer } from "../components/Footer"
 import { Headers } from "../components/Header"
 import { PostComment } from "../components/PostComment"
-import { Box, Container, HorizontalLine, InputForLongText, Radius8Btn } from "../components/styledcomponents";
+import { Container, HorizontalLine, InputForLongText, Radius8Btn } from "../components/styledcomponents";
 
 export const CommentsPage = () => {
   const { id } = useParams()
@@ -53,16 +53,16 @@ export const CommentsPage = () => {
     <>
       <Headers
         isCommentsPage={true} />
-      <Container>
-          <PostComment
-            isPost={true}
-            postId={postById.id}
-            creatorNickname={postById.creatorNickname}
-            content={postById.content}
-            upvote={postById.upvote}
-            comments={postById.comments?.length}
-            />
-            <div className="fixHeightCommentsPage">
+      <Container gap={true}>
+        <PostComment
+          isPost={true}
+          postId={postById.id}
+          creatorNickname={postById.creatorNickname}
+          content={postById.content}
+          upvote={postById.upvote}
+          comments={postById.comments?.length}
+        />
+        <div className="fixHeightCommentsPage">
           <InputForLongText
             placeholder="Adicionar comentário"
             type="text"
@@ -71,19 +71,17 @@ export const CommentsPage = () => {
             onChange={onChangeComment}
           />
           <Radius8Btn onClick={() => createPost()}>Responder</Radius8Btn>
+        <HorizontalLine margin={true}/>
         </div>
-          <HorizontalLine />
-        {/* <Box> */}
-          {postById.comments?.reverse().map((comment) => {
-            return <PostComment
-              key={comment.id}
-              isPost={false}
-              creatorNickname={comment.creatorNickname}
-              content={comment.content}
-              upvote={comment.upvote}
-            />
-          }).reverse()}
-        {/* </Box> */}
+        {postById.comments?.reverse().map((comment) => {
+          return <PostComment
+            key={comment.id}
+            isPost={false}
+            creatorNickname={comment.creatorNickname}
+            content={comment.content}
+            upvote={comment.upvote}
+          />
+        }).reverse()}
       </Container>
       <Footer />
     </>
