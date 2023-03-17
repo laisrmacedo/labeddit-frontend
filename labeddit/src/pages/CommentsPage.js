@@ -54,7 +54,6 @@ export const CommentsPage = () => {
       <Headers
         isCommentsPage={true} />
       <Container>
-        <div>
           <PostComment
             isPost={true}
             postId={postById.id}
@@ -62,7 +61,8 @@ export const CommentsPage = () => {
             content={postById.content}
             upvote={postById.upvote}
             comments={postById.comments?.length}
-          />
+            />
+            <div className="fixHeightCommentsPage">
           <InputForLongText
             placeholder="Adicionar comentário"
             type="text"
@@ -71,9 +71,9 @@ export const CommentsPage = () => {
             onChange={onChangeComment}
           />
           <Radius8Btn onClick={() => createPost()}>Responder</Radius8Btn>
-          <HorizontalLine />
         </div>
-        <Box>
+          <HorizontalLine />
+        {/* <Box> */}
           {postById.comments?.reverse().map((comment) => {
             return <PostComment
               key={comment.id}
@@ -83,7 +83,7 @@ export const CommentsPage = () => {
               upvote={comment.upvote}
             />
           }).reverse()}
-        </Box>
+        {/* </Box> */}
       </Container>
       <Footer />
     </>

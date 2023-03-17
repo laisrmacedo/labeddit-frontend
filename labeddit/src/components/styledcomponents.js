@@ -1,29 +1,52 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  height:calc(94% - 50px - 44px);
+  min-height:calc(94% - 50px - 44px);
   width: 364px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 32px 0 0 0;
+  position: relative;
   
-  >div{
+  .fixHeightPostsPage{
     width: 100%;
+    height: 195px;
     display: flex;
     flex-direction: column;
     gap: 10px;
   }
+  
+  .fixHeightCommentsPage{
+    /* border: 1px solid red; */
+    width: 100%;
+    min-height: 192px;
+    height: 00px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    position: sticky;
+    top: 0;
+    background-color: #FFF;
+    margin-top: 10px;
+  }
 ` 
+export const Box = styled.div`
 
-export const InputForLongText = styled.input`
+  height: calc(100% - 245px);
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  width: 364px;
+  gap: 10px;
+`
+
+export const InputForLongText = styled.textarea`
   height: 131px;
   width: 100%;
-  padding: 18px 0 90px 18px;
+  padding: 18px;
   border: 1px solid #D5D8DE;
   border-radius: 8px;
   background-color: #EDEDED;
-  margin-bottom: 12px;
   color: #000;
 `
 
@@ -58,11 +81,5 @@ export const Radius25Btn = styled.button`
   height: 51px;
 `
 
-export const Box = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  width: 364px;
-  gap: 10px;
-`
+
 

@@ -61,8 +61,8 @@ export const PostsPage = () => {
             onChange={onChangePost}
           />
           <Radius8Btn onClick={() => createPost()}>Postar</Radius8Btn>
-          <HorizontalLine />
         </div>
+        <HorizontalLine />
         <Box>
           {allPosts.map((post) => {
             return (
