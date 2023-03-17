@@ -56,7 +56,8 @@ export const CommentsPage = () => {
       <Container gap={true}>
         <PostComment
           isPost={true}
-          postId={postById.id}
+          id={postById.id}
+          path={'posts'}
           creatorNickname={postById.creatorNickname}
           content={postById.content}
           upvote={postById.upvote}
@@ -76,6 +77,8 @@ export const CommentsPage = () => {
         {postById.comments?.reverse().map((comment) => {
           return <PostComment
             key={comment.id}
+            id={comment.id}
+            path={'comments'}
             isPost={false}
             creatorNickname={comment.creatorNickname}
             content={comment.content}
