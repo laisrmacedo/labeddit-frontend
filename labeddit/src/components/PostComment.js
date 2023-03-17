@@ -1,15 +1,17 @@
 import styled from "styled-components";
 import upvote from "../assets/upvote.png"
+import activeUpvote from "../assets/activeUpvote.jpeg"
 import downvote from "../assets/downvote.png"
+import activeDownvote from "../assets/activeDownvote.jpeg"
 import comments from "../assets/comments.png"
 import { goToCommentsPage } from "../router/coordinator";
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
 import axios from "axios";
 import { BASE_URL } from "../App";
+import { useEffect, useState } from "react";
 
 const Container = styled.div`
-  min-height: ${(props) => (props.length <= 35 ? '120px' : props.length > 200 ? '290px' : props.length + 68 + 'px')};
+  min-height: ${(props) => (props.length <= 35 ? '120px' : props.length > 200 ? '290px' : props.length + 82 + 'px')};
   width: 100%;
   border: 1px solid #E0E0E0;
   background-color: #FBFBFB;
@@ -62,9 +64,33 @@ const Container = styled.div`
     justify-content: space-around;
     width: 65px;
   }
+
+  img{
+
+  }
 `
 export const PostComment = (props) => {
   const navigate = useNavigate()
+  // const [upvoteImage, setUpvoteImage] = useState(false)
+
+  const headers = {
+    headers: {
+      authorization: localStorage.getItem("token")
+    }
+  }
+
+  const upvoteOrDownvote = async (path, id, body, headers) => {
+    // setUpvoteImage(true)
+    try {
+      await axios.put(BASE_URL + `${path}/${id}/vote`, body, headers)
+    } catch (error) {
+      console.log(error.response.data)
+    }
+  }
+
+  // useEffect(() => {
+  //   setUpvoteImage(false)
+  // }, [props.upvote])
 
   return (
     <Container length={props.content?.length}>
@@ -74,14 +100,14 @@ export const PostComment = (props) => {
             <p className="content">{props.content}</p>
           </div>
           <span className="votes">
-            <img src={upvote} />
+            <img src={upvote} onClick={() => upvoteOrDownvote(props.path, props.id, {vote: true}, headers)}/>
             <p>{props.upvote}</p>
-            <img src={downvote} />
+            <img src={downvote} onClick={() => upvoteOrDownvote(props.path, props.id, {vote: false}, headers)}/>
           </span>
 
 
       {props.isPost &&
-        <span className="comments" onClick={() => goToCommentsPage(navigate, props.postId)}>
+        <span className="comments" onClick={() => goToCommentsPage(navigate, props.id)}>
           <img src={comments} />
           <p>{props.comments}</p>
         </span>
