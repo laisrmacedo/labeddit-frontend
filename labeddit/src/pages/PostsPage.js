@@ -68,7 +68,8 @@ export const PostsPage = () => {
             return (
               <PostComment
                 key={post.id}
-                postId={post.id}
+                id={post.id}
+                path={'posts'}
                 creatorNickname={post.creatorNickname}
                 content={post.content}
                 upvote={post.upvote}
