@@ -17,7 +17,11 @@ const ContainerLoginPage = styled.div`
   align-items: center;
 
   form{
-    width: 100%
+    width: 100%;
+    p{
+      color: red;
+      font-size: 10px;
+    }
   }
 
   img{
@@ -56,6 +60,8 @@ export const LoginPage = () => {
     password: ""
   })
 
+  const [error, setError] = useState("")
+
   const handleClick = (e) => {
     e.preventDefault()
     login()
@@ -78,6 +84,7 @@ export const LoginPage = () => {
       goToPostsPage(navigate)
     } catch (error) {
       console.log(error.response.data)
+      setError(error.response.data)
     }
   }
 
@@ -109,6 +116,9 @@ export const LoginPage = () => {
               value={form.password}
               onChange={onChangeForm}
             />
+            {error === "ERROR: 'email' or 'password' are wrong." ?
+            <p>E-mail ou senha incorreta.</p> : null
+            }
           </div>
           <Radius25Btn id="login" className="login"> Continue </Radius25Btn>
           <HorizontalLine />
