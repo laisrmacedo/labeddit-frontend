@@ -1,3 +1,3 @@
 # Frontend Project - Labeddit
 
-🚧  Under Construction 🚧 
+Deploy: https://labeddit-laisrmacedo.surge.sh/users/login
