@@ -45,7 +45,7 @@ export const InputForLongText = styled.textarea`
   border: 1px solid #D5D8DE;
   border-radius: 8px;
   background-color: #EDEDED;
-  color: #000;
+  color: ${(props) => (props.isLimit ? 'red' : '#000')};
 `
 
 export const InputForShortText = styled.input`

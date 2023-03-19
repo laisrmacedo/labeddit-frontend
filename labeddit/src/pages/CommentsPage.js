@@ -69,6 +69,7 @@ export const CommentsPage = () => {
             type="text"
             name="post"
             value={comment}
+            isLimit={comment.length >= 280 ? true : false}
             onChange={onChangeComment}
           />
           <Radius8Btn onClick={() => createPost()}>Responder</Radius8Btn>
