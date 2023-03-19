@@ -58,7 +58,7 @@ export const PostsPage = () => {
             type="text"
             name="post"
             value={content}
-            isLimit={content.length >= 280 ? true : false}
+            isLimit={content.length > 280 ? true : false}
             onChange={onChangePost}
           />
           <Radius8Btn onClick={() => createPost()}>Postar</Radius8Btn>
