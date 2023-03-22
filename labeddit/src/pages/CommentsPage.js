@@ -1,13 +1,21 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { BASE_URL } from "../App";
 import { Footer } from "../components/Footer"
 import { Headers } from "../components/Header"
 import { PostComment } from "../components/PostComment"
 import { Container, HorizontalLine, InputForLongText, Radius8Btn } from "../components/styledcomponents";
+import { goToLoginPage } from "../router/coordinator";
 
 export const CommentsPage = () => {
+  const navigate = useNavigate()
+  useEffect(() => {
+    if(localStorage.getItem("token") === ""){
+      goToLoginPage(navigate)
+    }
+  }, [])
+
   const { id } = useParams()
   const [postById, setPostById] = useState({})
 
