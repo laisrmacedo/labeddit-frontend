@@ -19,7 +19,7 @@ const Container = styled.div`
     justify-content: space-between;
   }
   p{
-    font-weight: 100;
+    font-weight: 500;
     font-size: 8px;
     text-transform: uppercase;
     color: #C4C4C4;

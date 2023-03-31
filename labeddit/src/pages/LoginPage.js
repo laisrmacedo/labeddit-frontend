@@ -31,6 +31,7 @@ const ContainerLoginPage = styled.div`
   p{
     color: black;
     font-size: 16px;
+    text-transform: uppercase;
   }
 
   .inputs{
