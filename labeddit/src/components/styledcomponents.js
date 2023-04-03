@@ -55,6 +55,7 @@ export const InputForShortText = styled.input`
   width: 100%;
   border-radius: 4px;
   color: #000;
+  font-weight: 100;
 `
 
 export const HorizontalLine = styled.div`
