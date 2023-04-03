@@ -1,7 +1,7 @@
 import { Footer } from "../components/Footer"
 import logoLogin from '../assets/logoLogin.png'
 import styled from "styled-components";
-import { HorizontalLine, InputForShortText, Radius25Btn } from "../components/styledcomponents";
+import { HorizontalLine, InputForShortText, Radius25Btn } from "../components/stedcomponents";
 import { useState } from "react";
 import axios from "axios";
 import { BASE_URL } from "../App";
@@ -32,6 +32,7 @@ const ContainerLoginPage = styled.div`
     color: black;
     font-size: 16px;
     text-transform: uppercase;
+    font-weight: 100;
   }
 
   .inputs{
