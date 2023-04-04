@@ -11,14 +11,9 @@ import { goToLoginPage } from "../router/coordinator";
 export const PostsPage = () => {
   const navigate = useNavigate()
 
-  useEffect(() => {
-    if(localStorage.getItem("token") === ""){
-      goToLoginPage(navigate)
-    }
-  }, [])
-
   const [allPosts, setAllPosts] = useState([])
   const [content, setContent] = useState("")
+  const [avatar, setAvatar] = useState("")
 
   const onChangePost = (e) => {
     setContent(e.target.value)
@@ -33,6 +28,14 @@ export const PostsPage = () => {
   const body = {
     content: content
   }
+
+  useEffect(() => {
+    if(localStorage.getItem("token") === ""){
+      goToLoginPage(navigate)
+    }else{
+      getAvatar('users/user', headers)
+    }
+  }, [])
 
   const createPost = async () => {
     try {
@@ -52,6 +55,15 @@ export const PostsPage = () => {
     }
   }
 
+  const getAvatar = async (path, headers) => {
+    try {
+      const responde = await axios.get(BASE_URL + path, headers)
+      setAvatar(responde.data.avatar)
+    } catch (error) {
+      console.log(error.response.data)
+    }
+  }
+
   useEffect(() => {
     getPosts('posts', headers)
   }, [allPosts])
@@ -60,6 +72,7 @@ export const PostsPage = () => {
     <>
       <Headers
         isPostsPage={true}
+        avatar={avatar}
       />
       <Container>
         <div className="fixHeightPostsPage">
