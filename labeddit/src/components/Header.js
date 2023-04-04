@@ -1,17 +1,17 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import logoHeader from '../assets/logoHeader.png'
-import { goToLoginPage, goToPostsPage } from "../router/coordinator";
+import { goToLoginPage, goToPostsPage, goToUserPage } from "../router/coordinator";
 
 const Container = styled.div`
-  min-height: 50px;
+  height: 50px;
   width: 100vw;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: #EDEDED;
   position: relative;
-  margin-bottom: 1%;
+  margin-bottom: 10px;
 
   div{
     /* border: 1px red solid; */
@@ -27,6 +27,11 @@ const Container = styled.div`
     justify-content: start;
     width: 70px;
     /* border: 1px red solid; */
+
+    img{
+      border-radius: 50%;
+      cursor: pointer;
+    }
 
     div{
       position: absolute;
@@ -71,11 +76,16 @@ export const Headers = (props) => {
   return (
     <Container>
       <div>
-        <span onClick={() => goToPostsPage(navigate)} className="closeBtn">
+        <span className="closeBtn">
+          {props.isPostsPage &&
+            <>
+              <img src={props.avatar} onClick={() => goToUserPage(navigate)}/>
+            </>
+          }
           {props.isCommentsPage &&
             <>
-              <div className="rotate45"></div>
-              <div className="rotate270"></div>
+              <div onClick={() => goToPostsPage(navigate)} className="rotate45"></div>
+              <div onClick={() => goToPostsPage(navigate)} className="rotate270"></div>
             </>
           }
         </span>
