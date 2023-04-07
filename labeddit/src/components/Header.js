@@ -89,7 +89,7 @@ export const Headers = (props) => {
             </>
           }
         </span>
-        <img src={logoHeader} />
+        <img src={logoHeader} onClick={() => goToPostsPage(navigate)}/>
         <span className="textBtn">
         {props.isCommentsPage &&
           <p onClick={() => logout()}>Logout</p>
