@@ -33,6 +33,7 @@ const Page = styled.main`
     width:100%;
     input{
       height: 45px;
+      width: 85%;
     }
   }
 
