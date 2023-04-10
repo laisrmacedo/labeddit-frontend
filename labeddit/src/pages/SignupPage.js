@@ -20,6 +20,10 @@ const ContainerSignupPage = styled.div`
     gap: 8px;
     width:100%;
     margin: 107px 0 56px 0;
+    p{
+      color: red;
+      font-size: 10px;
+    }
   }
 
   .terms{
@@ -59,6 +63,8 @@ export const SignupPage = () => {
     password: ""
   })
 
+  const [error, setError] = useState("")
+
   const handleClick = (e) => {
     e.preventDefault()
     signup()
@@ -82,8 +88,14 @@ export const SignupPage = () => {
       goToPostsPage(navigate)
     } catch (error) {
       console.log(error.response.data)
+      setError(error.response.data)
     }
   }
+
+  // let message
+  // if(error === "ERROR: 'email' must be like 'example@example.example'."){
+  //   message = 
+  // }
 
   return (
     <>
@@ -119,6 +131,12 @@ export const SignupPage = () => {
                 value={form.password}
                 onChange={onChangeForm}
               />
+              {error === "ERROR: 'nickname' must be at least 4 characters." ? <p>Apelido deve ter pelo menos 4 caracteres.</p> : null}
+              {error === "ERROR: 'email' must be like 'example@example.example'." ? <p>Informe um email válido.</p> : null}
+              {error === "ERROR: 'password' must be between 8 and 12 characters, with uppercase and lowercase letters and at least one number and one special character." ?
+              <p>A senha deve ter entre 8 e 12 caracteres, com letras maiúscula e minúscula, pelos menos um número e um caracter especial.</p> : null}
+              {error === "ERROR: 'nickname' already exists." ? <p>Apelido já cadastrado.</p> : null}
+              {error === "ERROR: 'email' already exists." ? <p>Email já cadastrado.</p> : null}
             </div>
             <div className="terms">
               <p>Ao continuar, você concorda com o nosso Contrato de usuário e nossa Política de Privacidade</p>

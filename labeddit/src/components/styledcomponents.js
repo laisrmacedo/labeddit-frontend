@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  min-height:calc(94% - 44px - 82px - 90px);
+  min-height:calc(100% - 60px - 90px);
   width: 364px;
   display: flex;
   flex-direction: column;
@@ -45,7 +45,7 @@ export const InputForLongText = styled.textarea`
   border: 1px solid #D5D8DE;
   border-radius: 8px;
   background-color: #EDEDED;
-  color: #000;
+  color: ${(props) => (props.isLimit ? 'red' : '#000')};
 `
 
 export const InputForShortText = styled.input`
@@ -55,6 +55,7 @@ export const InputForShortText = styled.input`
   width: 100%;
   border-radius: 4px;
   color: #000;
+  font-weight: 100;
 `
 
 export const HorizontalLine = styled.div`
