@@ -4,7 +4,7 @@ import logoHeader from '../assets/logoHeader.png'
 import { goToLoginPage, goToPostsPage, goToUserPage } from "../router/coordinator";
 
 const Container = styled.div`
-  height: 50px;
+  min-height: 50px;
   width: 100vw;
   display: flex;
   align-items: center;
