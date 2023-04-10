@@ -14,7 +14,7 @@ const Page = styled.main`
   height: 100%;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  justify-content: space-between;
   align-items: center;
   padding-top: 5%;
   
@@ -37,19 +37,21 @@ const Page = styled.main`
     flex-direction: column;
     justify-content: start;
     gap: 8px;
-    width:100%;
-    height: 100px; 
+    width: 90%;
+    height: 90px; 
+    margin: 0 auto;
     /* border: 1px solid red; */
+
     span{
       width: 100%;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 10px;
 
       input{
-        height: 50px;
-        width: 85%;
+        height: 40px;
+        width: 80%;
+        font-weight: 400;
       }
       h2{
         color: #808080;
@@ -59,9 +61,20 @@ const Page = styled.main`
     h5{
       color: red;
       font-size: 10px;
-      align-self: start;
     }
   }
+
+  >span{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    a{
+      color: #808080;
+      font-size: 10px;
+      justify-self: flex-end;
+    }
+  }
+
 `
 
 export const UserPage = () => {
@@ -225,6 +238,10 @@ export const UserPage = () => {
           <p onClick={() => setEdit(true, true, false)}>MUDAR SENHA</p>
           <p onClick={() => deleteUser(`users/${user.id}`, headers)}>DELETAR CONTA</p>
           <p onClick={() => logout()}>LOGOUT</p>
+          <span>
+            <a href="https://www.flaticon.com/free-icons/arrows" title="arrows icons">Arrows icons created by lutfix - Flaticon</a>
+            <a href="https://www.flaticon.com/free-icons/delete" title="delete icons">Delete icons created by Ilham Fitrotul Hayat - Flaticon</a>
+          </span>
         </Page>
       </Container>
       <Footer />
