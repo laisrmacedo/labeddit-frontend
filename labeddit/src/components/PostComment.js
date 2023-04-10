@@ -96,12 +96,20 @@ export const PostComment = (props) => {
     }
   }
 
+  const deletePost = async (id, headers) => {
+    try {
+      await axios.delete(BASE_URL + `posts/${id}`, headers)
+    } catch (error) {
+      console.log(error.response.data)
+    }
+  }
+
   return (
     <Container length={props.content?.length}>
       <div>
         <span>
           <p className="user">Enviado por: {props.creatorNickname}</p>
-          <img src={trash} onClick={() => upvoteOrDownvote(props.path, props.id, { vote: true }, headers)} />
+          {props.creatorNickname === props.user ? <img src={trash} onClick={() => deletePost(props.id, headers)} /> : <></>}
         </span>
         <p className="content">{props.content}</p>
       </div>
