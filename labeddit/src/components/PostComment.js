@@ -11,7 +11,7 @@ import { BASE_URL } from "../App";
 import { useEffect, useState } from "react";
 
 const Container = styled.div`
-  min-height: ${(props) => (props.length <= 35 ? '120px' : props.length > 200 ? '290px' : props.length + 82 + 'px')};
+  min-height: ${(props) => (props.length <= 35 ? '120px' : props.length > 200 ? '294px' : props.length + 82 + 'px')};
   width: 100%;
   border: 1px solid #E0E0E0;
   background-color: #FBFBFB;
@@ -21,11 +21,11 @@ const Container = styled.div`
   flex-wrap: wrap;
   align-items: center;
   justify-content: start;
-  gap: 18px;
+  gap: 8px;
 
   div{
     width: 100%;
-    min-height: 5px;
+    /* min-height: 5px; */
     display: flex;
     flex-direction: column;
     gap: 18px;
@@ -33,12 +33,12 @@ const Container = styled.div`
 
   .user{
     color: #6F6F6F;
-    font-size: 12px;
+    font-size: 11px;
   }
 
   .content{
     color: #000;
-    font-size: 18px;
+    font-size: 16px;
   }
 
   p{
@@ -52,7 +52,7 @@ const Container = styled.div`
     border: 1px solid #ECECEC;
     background-color: #FBFBFB;
     border-radius: 14px;
-    height: 28px;
+    height: 30px;
   }
 
   .votes{
@@ -64,10 +64,10 @@ const Container = styled.div`
     justify-content: space-around;
     width: 65px;
   }
-
+/* 
   img{
 
-  }
+  } */
 `
 export const PostComment = (props) => {
   const navigate = useNavigate()
@@ -94,7 +94,6 @@ export const PostComment = (props) => {
 
   return (
     <Container length={props.content?.length}>
-
           <div>
             <p className="user">Enviado por: {props.creatorNickname}</p>
             <p className="content">{props.content}</p>
@@ -104,8 +103,6 @@ export const PostComment = (props) => {
             <p>{props.upvote}</p>
             <img src={downvote} onClick={() => upvoteOrDownvote(props.path, props.id, {vote: false}, headers)}/>
           </span>
-
-
       {props.isPost &&
         <span className="comments" onClick={() => goToCommentsPage(navigate, props.id)}>
           <img src={comments} />
