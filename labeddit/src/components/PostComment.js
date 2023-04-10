@@ -8,7 +8,6 @@ import { goToCommentsPage } from "../router/coordinator";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { BASE_URL } from "../App";
-import { useEffect, useState } from "react";
 
 const Container = styled.div`
   min-height: ${(props) => (props.length <= 35 ? '120px' : props.length > 200 ? '294px' : props.length + 82 + 'px')};
@@ -25,7 +24,6 @@ const Container = styled.div`
 
   div{
     width: 100%;
-    /* min-height: 5px; */
     display: flex;
     flex-direction: column;
     gap: 18px;
@@ -53,6 +51,11 @@ const Container = styled.div`
     background-color: #FBFBFB;
     border-radius: 14px;
     height: 30px;
+    align-items: center;
+
+    img{
+      height: 17px;
+    }
   }
 
   .votes{
@@ -64,14 +67,9 @@ const Container = styled.div`
     justify-content: space-around;
     width: 65px;
   }
-/* 
-  img{
-
-  } */
 `
 export const PostComment = (props) => {
   const navigate = useNavigate()
-  // const [upvoteImage, setUpvoteImage] = useState(false)
 
   const headers = {
     headers: {
@@ -80,17 +78,12 @@ export const PostComment = (props) => {
   }
 
   const upvoteOrDownvote = async (path, id, body, headers) => {
-    // setUpvoteImage(true)
     try {
       await axios.put(BASE_URL + `${path}/${id}/vote`, body, headers)
     } catch (error) {
       console.log(error.response.data)
     }
   }
-
-  // useEffect(() => {
-  //   setUpvoteImage(false)
-  // }, [props.upvote])
 
   return (
     <Container length={props.content?.length}>
@@ -99,9 +92,9 @@ export const PostComment = (props) => {
             <p className="content">{props.content}</p>
           </div>
           <span className="votes">
-            <img src={upvote} onClick={() => upvoteOrDownvote(props.path, props.id, {vote: true}, headers)}/>
+            <img src={props.vote === "up"? activeUpvote : upvote} onClick={() => upvoteOrDownvote(props.path, props.id, {vote: true}, headers)}/>
             <p>{props.upvote}</p>
-            <img src={downvote} onClick={() => upvoteOrDownvote(props.path, props.id, {vote: false}, headers)}/>
+            <img src={props.vote === "down"? activeDownvote : downvote} onClick={() => upvoteOrDownvote(props.path, props.id, {vote: false}, headers)}/>
           </span>
       {props.isPost &&
         <span className="comments" onClick={() => goToCommentsPage(navigate, props.id)}>

@@ -99,6 +99,7 @@ export const PostsPage = () => {
                 upvote={post.upvote}
                 comments={post.comments.length}
                 isPost={true}
+                vote={post.vote}
               />
             )
           }).reverse()}
