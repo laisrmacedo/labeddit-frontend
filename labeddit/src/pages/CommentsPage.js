@@ -70,6 +70,8 @@ export const CommentsPage = () => {
           content={postById.content}
           upvote={postById.upvote}
           comments={postById.comments?.length}
+          vote={postById.postVote}
+          user={postById.loggedUser}
         />
         <div className="fixHeightCommentsPage">
           <InputForLongText
@@ -92,6 +94,8 @@ export const CommentsPage = () => {
             creatorNickname={comment.creatorNickname}
             content={comment.content}
             upvote={comment.upvote}
+            vote={comment.commentVote}
+            user={postById.loggedUser}
           />
         }).reverse()}
       </Container>
