@@ -1,21 +1,20 @@
 import { Footer } from "../components/Footer"
 import { Headers } from "../components/Header"
 import styled from "styled-components";
-import { Container, InputForShortText, Radius25Btn } from "../components/styledcomponents";
+import { Container, InputForShortText } from "../components/styledcomponents";
 import axios from "axios";
 import { BASE_URL } from "../App";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { goToLoginPage, goToPostsPage } from "../router/coordinator";
+import { goToLoginPage } from "../router/coordinator";
 import { useEffect } from "react";
-import pen from "../assets/pen.png"
 
 const Page = styled.main`
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  gap: 20px;
   align-items: center;
   padding-top: 5%;
   
@@ -31,40 +30,16 @@ const Page = styled.main`
 
   form{
     width:100%;
-    input{
-      height: 45px;
-      width: 85%;
-    }
-  }
-
-  .inputAvatar{
-    display: flex;
-    width:100%;
-    height: 80px; 
-    /* border: 1px solid blue; */
-
-    span{
-      width: 100%;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-
-      h2{
-      color: #808080;
-      }
-    }
   }
   
   .inputs{
     display: flex;
     flex-direction: column;
-    align-items: center;
+    justify-content: start;
     gap: 8px;
     width:100%;
-    height: 130px; 
-    /* margin: 20px 0; */
+    height: 100px; 
     /* border: 1px solid red; */
-    
     span{
       width: 100%;
       display: flex;
@@ -72,67 +47,20 @@ const Page = styled.main`
       justify-content: space-between;
       gap: 10px;
 
-      img{
-        width: 22px;
-        height: 22px;
-        filter: opacity(0.5);
+      input{
+        height: 50px;
+        width: 85%;
       }
-    }
-    p{
-      color: #808080;
-      font-size: 18px;
-      text-transform: uppercase;
-      font-weight: 100;
+      h2{
+        color: #808080;
+        cursor: pointer;
+      }
     }
     h5{
       color: red;
       font-size: 10px;
       align-self: start;
     }
-    h2{
-      color: #808080;
-    }
-  }
-  
-  .error{
-    p{
-      color: red;
-      font-size: 10px;
-    }
-  }
-
-  .terms{
-    margin: 65px 0 28px 0;
-    display: flex;
-    flex-direction: column;
-    gap:17px;
-
-    p{
-      font-size: 14px;
-      color: black;
-    }
-
-    input{
-      width: 18px;
-      height: 18px;
-    }
-
-    span{
-      display:flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 11px;
-    }
-  }
-
-  .signup{
-    background: linear-gradient(90deg, #FF6489, #F9B24E);
-  }
-    /* border: 1px solid red; */
-
-  a{
-    color: #D5D8DE;
-    font-size: 10px;
   }
 `
 
@@ -219,92 +147,84 @@ export const UserPage = () => {
     }
   }
 
+  const setEdit = (avatar, nickname, password) => {
+    setEditAvatar(avatar)
+    setEditNickname(nickname)
+    setEditPassword(password)
+  }
+
 
   return (
     <>
       <Headers />
       <Container>
         <Page>
-          <img src={user.avatar} onClick={() => setEditAvatar(false)} />
+          <img src={user.avatar} onClick={() => setEdit(false, true, true)} />
           <p>{user.email}</p>
           <form onSubmit={handleClick}>
-            {editAvatar ?
-              <div className="inputAvatar">
-                <span>
-                </span>
-              </div>
-              :
-              <div className="inputAvatar">
-                <span>
-                  <InputForShortText
-                    placeholder="Novo URL"
-                    required
-                    type="text"
-                    name="avatar"
-                    value={form.avatar}
-                    onChange={onChangeForm}
-                  />
-                  <h2 onClick={() => editUser(`users/${user.id}`, body, headers, `Avatar`)}>OK</h2>
-                </span>
-              </div>
-            }
-            {editNickname ?
-              <div className="inputs">
-                <p>Apelido</p>
-                <span>
-                  <h2>{user.nickname}</h2>
-                  <img src={pen} onClick={() => setEditNickname(false)} />
-                </span>
-              </div>
-              :
-              <div className="inputs">
-                <p>Apelido</p>
-                <span>
-                  <InputForShortText
-                    placeholder="Novo apelido"
-                    required
-                    type="text"
-                    name="nickname"
-                    value={form.nickname}
-                    onChange={onChangeForm}
-                  />
-                  <h2 onClick={() => editUser(`users/${user.id}`, body, headers, `Nickname`)}>OK</h2>
-                </span>
-                {error === "ERROR: 'nickname' must be at least 4 characters." ? <h5>Apelido deve ter pelo menos 4 caracteres.</h5> : null}
-                {error === "ERROR: 'nickname' already exists." ? <h5>Apelido já cadastrado.</h5> : null}
-              </div>
-            }
-            {editPassword ?
-              <div className="inputs">
-                <p>Senha</p>
-                <span>
-                  <h2>-------</h2>
-                  <img src={pen} onClick={() => setEditPassword(false)} />
-                </span>
-              </div>
-              :
-              <div className="inputs">
-                <p>Senha</p>
-                <span>
-                  <InputForShortText
-                    placeholder="Nova Senha"
-                    required
-                    type="password"
-                    name="password"
-                    value={form.password}
-                    onChange={onChangeForm}
-                  />
-                  <h2 onClick={() => editUser(`users/${user.id}`, body, headers, `Password`)}>OK</h2>
-                </span>
-                {error === "ERROR: 'password' must be between 8 and 12 characters, with uppercase and lowercase letters and at least one number and one special character." ?
-              <h5>A senha deve ter entre 8 e 12 caracteres, com letras maiúscula e minúscula, pelos menos um número e um caracter especial.</h5> : null}
-              </div>
-
-            }
+            <div className="inputs">
+              {editAvatar ?
+                <></>
+                :
+                <>
+                  <span>
+                    <InputForShortText
+                      placeholder="Novo URL para seu avatar"
+                      required
+                      type="text"
+                      name="avatar"
+                      value={form.avatar}
+                      onChange={onChangeForm}
+                    />
+                    <h2 onClick={() => editUser(`users/${user.id}`, body, headers, `Avatar`)}>OK</h2>
+                  </span>
+                  {error === "ERROR: 'avatar' must be a valid image URL." ? <h5>URL inválido.</h5> : null}
+                </>
+              }
+              {editNickname ?
+                <></>
+                :
+                <>
+                  <span>
+                    <InputForShortText
+                      placeholder="Novo apelido"
+                      required
+                      type="text"
+                      name="nickname"
+                      value={form.nickname}
+                      onChange={onChangeForm}
+                    />
+                    <h2 onClick={() => editUser(`users/${user.id}`, body, headers, `Nickname`)}>OK</h2>
+                  </span>
+                  {error === "ERROR: 'nickname' must be at least 4 characters." ? <h5>Apelido deve ter pelo menos 4 caracteres.</h5> : null}
+                  {error === "ERROR: 'nickname' already exists." ? <h5>Apelido já cadastrado.</h5> : null}
+                </>
+              }
+              {editPassword ?
+                <></>
+                :
+                <>
+                  <span>
+                    <InputForShortText
+                      placeholder="Nova senha"
+                      required
+                      type="password"
+                      name="password"
+                      value={form.password}
+                      onChange={onChangeForm}
+                    />
+                    <h2 onClick={() => editUser(`users/${user.id}`, body, headers, `Password`)}>OK</h2>
+                  </span>
+                  {error === "ERROR: 'password' must be between 8 and 12 characters, with uppercase and lowercase letters and at least one number and one special character." ?
+                    <h5>A senha deve ter entre 8 e 12 caracteres, com letras maiúscula e minúscula, pelos menos um número e um caracter especial.</h5> : null}
+                </>
+              }
+            </div>
           </form>
+          <p onClick={() => setEdit(true, false, true)}>MUDAR APELIDO</p>
+          <p onClick={() => setEdit(true, true, false)}>MUDAR SENHA</p>
           <p onClick={() => deleteUser(`users/${user.id}`, headers)}>DELETAR CONTA</p>
           <p onClick={() => logout()}>LOGOUT</p>
-          <a href="https://www.flaticon.com/" title="icons">Ícones gratuitos de www.flaticon.com</a>
         </Page>
       </Container>
       <Footer />
