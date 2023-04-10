@@ -14,7 +14,6 @@ const Container = styled.div`
   margin-bottom: 10px;
 
   div{
-    /* border: 1px red solid; */
     width: 364px;
     display: flex;
     justify-content: space-between;
@@ -26,7 +25,6 @@ const Container = styled.div`
     align-items: center;
     justify-content: start;
     width: 70px;
-    /* border: 1px red solid; */
 
     img{
       border-radius: 50%;
@@ -53,7 +51,6 @@ const Container = styled.div`
   }
 
   .textBtn{
-    /* border: 1px red solid; */
     width: 70px;
     display: flex;
     justify-content: end;
