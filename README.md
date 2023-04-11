@@ -24,6 +24,10 @@ Frontend: [labeddit-laisrmacedo.surge.sh/users/login](https://labeddit-laisrmace
 
 Backend: [labeddit-backend-deploy.onrender.com/](https://labeddit-backend-deploy.onrender.com/)
 
+## 🧩 Backend Repository
+
+GitHub: [laisrmacedo/labeddit-backend](https://github.com/laisrmacedo/labeddit-backend)
+
 ## 🛠 Technologies
 
 - React; 
