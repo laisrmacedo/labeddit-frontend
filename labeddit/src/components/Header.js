@@ -4,7 +4,7 @@ import logoHeader from '../assets/logoHeader.png'
 import { goToLoginPage, goToPostsPage, goToUserPage } from "../router/coordinator";
 
 const Container = styled.div`
-  height: 50px;
+  min-height: 50px;
   width: 100vw;
   display: flex;
   align-items: center;
@@ -14,7 +14,6 @@ const Container = styled.div`
   margin-bottom: 10px;
 
   div{
-    /* border: 1px red solid; */
     width: 364px;
     display: flex;
     justify-content: space-between;
@@ -26,7 +25,6 @@ const Container = styled.div`
     align-items: center;
     justify-content: start;
     width: 70px;
-    /* border: 1px red solid; */
 
     img{
       border-radius: 50%;
@@ -53,7 +51,6 @@ const Container = styled.div`
   }
 
   .textBtn{
-    /* border: 1px red solid; */
     width: 70px;
     display: flex;
     justify-content: end;

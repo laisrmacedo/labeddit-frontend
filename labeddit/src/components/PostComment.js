@@ -1,13 +1,14 @@
 import styled from "styled-components";
 import upvote from "../assets/upvote.png"
-import activeUpvote from "../assets/activeUpvote.jpeg"
+import activeUpvote from "../assets/activeUpvote.png"
 import downvote from "../assets/downvote.png"
-import activeDownvote from "../assets/activeDownvote.jpeg"
+import activeDownvote from "../assets/activeDownvote.png";
 import comments from "../assets/comments.png"
 import { goToCommentsPage } from "../router/coordinator";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { BASE_URL } from "../App";
+import trash from "../assets/delete.png";
 
 const Container = styled.div`
   min-height: ${(props) => (props.length <= 35 ? '120px' : props.length > 200 ? '294px' : props.length + 82 + 'px')};
@@ -27,6 +28,16 @@ const Container = styled.div`
     display: flex;
     flex-direction: column;
     gap: 18px;
+
+    span{
+      display: flex;
+      justify-content: space-between;
+
+      img{
+        height: 16px;
+        filter: opacity(0.4);
+      }
+    }
   }
 
   .user{
@@ -44,7 +55,7 @@ const Container = styled.div`
     font-size: 12px;
   }
 
-  span{
+  >span{
     display: flex;
     padding: 5px;
     border: 1px solid #ECECEC;
@@ -54,7 +65,7 @@ const Container = styled.div`
     align-items: center;
 
     img{
-      height: 17px;
+      height: 16px;
     }
   }
 
@@ -85,17 +96,31 @@ export const PostComment = (props) => {
     }
   }
 
+  const toDelete = async (path, id, headers) => {
+    try {
+      await axios.delete(BASE_URL + `${path}/${id}`, headers)
+    } catch (error) {
+      console.log(error.response.data)
+    }
+  }
+
   return (
     <Container length={props.content?.length}>
-          <div>
-            <p className="user">Enviado por: {props.creatorNickname}</p>
-            <p className="content">{props.content}</p>
-          </div>
-          <span className="votes">
-            <img src={props.vote === "up"? activeUpvote : upvote} onClick={() => upvoteOrDownvote(props.path, props.id, {vote: true}, headers)}/>
-            <p>{props.upvote}</p>
-            <img src={props.vote === "down"? activeDownvote : downvote} onClick={() => upvoteOrDownvote(props.path, props.id, {vote: false}, headers)}/>
-          </span>
+      <div>
+        <span>
+          <p className="user">Enviado por: {props.creatorNickname}</p>
+          {props.isPost ? 
+            ((props.creatorNickname === props.user || props.user === "bigboss") ? <img src={trash} onClick={() => toDelete("posts", props.id, headers)} /> : <></>):
+            ((props.creatorNickname === props.user || props.user === "bigboss") ? <img src={trash} onClick={() => toDelete("comments", props.id, headers)} /> : <></>)
+          }
+        </span>
+        <p className="content">{props.content}</p>
+      </div>
+      <span className="votes">
+        <img src={props.vote === "up" ? activeUpvote : upvote} onClick={() => upvoteOrDownvote(props.path, props.id, { vote: true }, headers)} />
+        <p>{props.upvote}</p>
+        <img src={props.vote === "down" ? activeDownvote : downvote} onClick={() => upvoteOrDownvote(props.path, props.id, { vote: false }, headers)} />
+      </span>
       {props.isPost &&
         <span className="comments" onClick={() => goToCommentsPage(navigate, props.id)}>
           <img src={comments} />

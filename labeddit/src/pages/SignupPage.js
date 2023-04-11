@@ -9,25 +9,44 @@ import { useState } from "react";
 import { goToPostsPage } from "../router/coordinator";
 
 const ContainerSignupPage = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 100%;
+  min-height: 600px;
+  /* border: 1px solid red; */
+
   >p{
     color: black;
-    font-size: 33px;
+    font-size: 28px;
+    text-align: center;
   }
 
+  form{
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
   .inputs{
     display: flex;
     flex-direction: column;
     gap: 8px;
     width:100%;
-    margin: 107px 0 56px 0;
+    height: 250px;
+
     p{
+      text-align: center;
       color: red;
       font-size: 10px;
+    }
+
+    input{
+      font-weight: 400;
+      color: #808080;
     }
   }
 
   .terms{
-    margin: 65px 0 28px 0;
     display: flex;
     flex-direction: column;
     gap:17px;
@@ -91,11 +110,6 @@ export const SignupPage = () => {
       setError(error.response.data)
     }
   }
-
-  // let message
-  // if(error === "ERROR: 'email' must be like 'example@example.example'."){
-  //   message = 
-  // }
 
   return (
     <>
