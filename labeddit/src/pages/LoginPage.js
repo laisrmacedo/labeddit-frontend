@@ -21,37 +21,33 @@ const ContainerLoginPage = styled.div`
     flex-direction: column;
     align-items: center;
     width: 100%;
-
-    p{
-      color: red;
-      font-size: 10px;
-    }
-
+    
     button{
       width: 90%;
     }
-
+    
     div{
       width: 90%;
     }
   }
-
+  
   img{
     height: 142px;
   }
-
-  p{
+  
+  >p{
     color: black;
     font-size: 16px;
     text-transform: uppercase;
     font-weight: 100;
   }
-
+  
   .inputs{
     display: flex;
     flex-direction: column;
     gap: 8px;
     width:100%;
+    height: 160px;
     margin: 60px 0 40px 0;
     color: #45525B;
 
@@ -60,6 +56,12 @@ const ContainerLoginPage = styled.div`
       font-weight: 400;
       color: #808080;
       width: 90%;
+    }
+
+    p{
+      margin: 0 auto;
+      color: red;
+      font-size: 10px;
     }
   }
 
@@ -132,9 +134,7 @@ export const LoginPage = () => {
               value={form.password}
               onChange={onChangeForm}
             />
-            {error === "ERROR: 'email' or 'password' are wrong." ?
-            <p>E-mail ou senha incorreta.</p> : null
-            }
+          {error === "ERROR: 'email' or 'password' are wrong." ? <p>E-mail ou senha incorreta.</p> : null}
           </div>
           <Radius25Btn id="login" className="login"> Continue </Radius25Btn>
           <HorizontalLine />
