@@ -11,11 +11,11 @@ LabEddit is a full stack web project, developed with a mobile first app design t
 ## 📱 Screens
 
 <p align="center">
-  <img width="150px" src="./src/assets/screenLogin.png" />
-  <img width="150px" src="./src/assets/screenSignup.png" />
-  <img width="150px" src="./src/assets/screenPosts.png" />
-  <img width="150px" src="./src/assets/screenComments.png" />
-  <img width="150px" src="./src/assets/screenUser.png" />
+  <img width="150px" src="./labeddit/src/assets/screenLogin.png" />
+  <img width="150px" src="./labeddit/src/assets/screenSignup.png" />
+  <img width="150px" src="./labeddit/src/assets/screenPosts.png" />
+  <img width="150px" src="./labeddit/src/assets/screenComments.png" />
+  <img width="150px" src="./labeddit/src/assets/screenUser.png" />
 </p>
 
 ## ☁️ Deploy
