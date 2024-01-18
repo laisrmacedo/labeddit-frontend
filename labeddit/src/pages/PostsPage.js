@@ -103,6 +103,8 @@ export const PostsPage = () => {
                 isPost={true}
                 vote={post.vote}
                 user={post.loggedUser}
+                checkClick={checkClick}
+                setCheckClick={setCheckClick}
               />
             )
           }).reverse()}

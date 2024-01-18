@@ -36,6 +36,7 @@ const Container = styled.div`
       img{
         height: 16px;
         filter: opacity(0.4);
+        cursor: pointer;
       }
     }
   }
@@ -99,6 +100,7 @@ export const PostComment = (props) => {
   const toDelete = async (path, id, headers) => {
     try {
       await axios.delete(BASE_URL + `${path}/${id}`, headers)
+      props.setCheckClick(!props.checkClick)
     } catch (error) {
       console.log(error.response.data)
     }
