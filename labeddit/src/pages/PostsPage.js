@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "../App";
 import { Footer } from "../components/Footer"
@@ -14,6 +14,7 @@ export const PostsPage = () => {
   const [allPosts, setAllPosts] = useState([])
   const [content, setContent] = useState("")
   const [avatar, setAvatar] = useState("")
+  const [checkClick, setCheckClick] = useState(false)
 
   const onChangePost = (e) => {
     setContent(e.target.value)
@@ -41,6 +42,7 @@ export const PostsPage = () => {
     try {
       await axios.post(BASE_URL + `posts`, body, headers)
       setContent("")
+      setCheckClick(!checkClick)
     } catch (error) {
       console.log(error.response.data)
     }
@@ -66,7 +68,7 @@ export const PostsPage = () => {
 
   useEffect(() => {
     getPosts('posts', headers)
-  }, [allPosts])
+  }, [checkClick])
 
   return (
     <>
