@@ -7,6 +7,7 @@ import axios from "axios";
 import { BASE_URL } from "../App";
 import { useNavigate } from "react-router-dom";
 import { goToPostsPage, goToSignupPage } from "../router/coordinator";
+import { Loading } from "../components/Loading";
 
 const ContainerLoginPage = styled.div`
   height: 94%;
@@ -84,10 +85,12 @@ export const LoginPage = () => {
   })
 
   const [error, setError] = useState("")
+  const [loading, setLoading] = useState(false)
 
   const handleClick = (e) => {
     e.preventDefault()
     login()
+    setLoading(true)
   }
 
   const onChangeForm = (e) => {
@@ -105,6 +108,7 @@ export const LoginPage = () => {
       const response = await axios.post(BASE_URL + `users/login`, body)
       localStorage.setItem("token", response.data.token)
       goToPostsPage(navigate)
+      setLoading(false)
     } catch (error) {
       console.log(error.response.data)
       setError(error.response.data)
@@ -118,22 +122,28 @@ export const LoginPage = () => {
         <p>O projeto de rede social da Labenu</p>
         <form onSubmit={handleClick}>
           <div className="inputs">
-            <InputForShortText
-              placeholder="E-mail"
-              required
-              type="text"
-              name="email"
-              value={form.email}
-              onChange={onChangeForm}
-            />
-            <InputForShortText
-              placeholder="Senha"
-              required
-              type="password"
-              name="password"
-              value={form.password}
-              onChange={onChangeForm}
-            />
+            {loading? 
+            <Loading/>
+            :
+              <>
+              <InputForShortText
+                placeholder="E-mail"
+                required
+                type="text"
+                name="email"
+                value={form.email}
+                onChange={onChangeForm}
+              />
+              <InputForShortText
+                placeholder="Senha"
+                required
+                type="password"
+                name="password"
+                value={form.password}
+                onChange={onChangeForm}
+              />
+              </>
+            }
           {error === "ERROR: 'email' or 'password' are wrong." ? <p>E-mail ou senha incorreta.</p> : null}
           </div>
           <Radius25Btn id="login" className="login"> Continue </Radius25Btn>

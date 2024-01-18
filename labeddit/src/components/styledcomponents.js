@@ -71,13 +71,15 @@ export const Radius8Btn = styled.button`
   width:  100%;
   height: 51px;
   background: linear-gradient(90deg, #FF6489, #F9B24E);
-`
+  cursor: pointer;
+  `
 
 export const Radius25Btn = styled.button`
   border-radius: 25px;
   border: none;
   width:  100%;
   height: 51px;
+  cursor: pointer;
 `
 
 
