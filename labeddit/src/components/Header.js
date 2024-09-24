@@ -62,7 +62,8 @@ const Container = styled.div`
   }
   `
 
-export const Headers = (props) => {
+const Headers = (props) => {
+  console.log(">>>>>", props)
   const navigate = useNavigate()
 
   const logout = () => {
@@ -102,3 +103,5 @@ export const Headers = (props) => {
     </Container>
   )
 }
+
+export default Headers;

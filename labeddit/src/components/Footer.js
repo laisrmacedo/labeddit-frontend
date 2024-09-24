@@ -42,7 +42,7 @@ const Container = styled.div`
   }
   `
 
-export const Footer = () => {
+const Footer = () => {
 
   return (
     <Container>
@@ -64,3 +64,5 @@ export const Footer = () => {
     </Container>
   )
 }
+
+export default Footer;
