@@ -2,9 +2,9 @@ import axios from "axios";
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "../App";
-import { Footer } from "../components/Footer"
-import { Headers } from "../components/Header"
-import { PostComment } from "../components/PostComment";
+import Footer from "../components/Footer"
+import Headers from "../components/Header"
+import PostComment from "../components/PostComment";
 import { Box, Container, HorizontalLine, InputForLongText, Radius8Btn } from "../components/styledcomponents";
 import { goToLoginPage } from "../router/coordinator";
 

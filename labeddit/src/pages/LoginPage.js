@@ -1,4 +1,4 @@
-import { Footer } from "../components/Footer"
+import  Footer  from "../components/Footer"
 import logoLogin from '../assets/logoLogin.png'
 import styled from "styled-components";
 import { HorizontalLine, InputForShortText, Radius25Btn } from "../components/styledcomponents";

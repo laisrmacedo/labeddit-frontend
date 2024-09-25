@@ -80,7 +80,8 @@ const Container = styled.div`
     width: 65px;
   }
 `
-export const PostComment = (props) => {
+const PostComment = (props) => {
+  console.log(">>>>>", props)
   const navigate = useNavigate()
 
   const headers = {
@@ -132,3 +133,5 @@ export const PostComment = (props) => {
     </Container>
   )
 }
+
+export default PostComment;

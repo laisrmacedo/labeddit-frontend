@@ -1,5 +1,5 @@
-import { Footer } from "../components/Footer"
-import { Headers } from "../components/Header"
+import Footer from "../components/Footer"
+import Headers from "../components/Header"
 import styled from "styled-components";
 import { Container, InputForShortText } from "../components/styledcomponents";
 import axios from "axios";

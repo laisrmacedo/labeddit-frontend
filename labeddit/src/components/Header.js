@@ -63,7 +63,6 @@ const Container = styled.div`
   `
 
 const Headers = (props) => {
-  console.log(">>>>>", props)
   const navigate = useNavigate()
 
   const logout = () => {
